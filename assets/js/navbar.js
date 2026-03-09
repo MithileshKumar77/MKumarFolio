@@ -14,11 +14,13 @@ const menuLinks = document.querySelectorAll('#mobileMenu a');
 const backdrop = document.getElementById('menuBackdrop');
 
 function closeMenuPanel() {
+    menuBtn.classList.remove('menu-open');
     mobileMenu.classList.add('translate-x-full');
     backdrop?.classList.add('hidden');
 }
 
 function openMenuPanel() {
+    menuBtn.classList.add('menu-open');
     mobileMenu.classList.remove('translate-x-full');
     backdrop?.classList.remove('hidden');
 }

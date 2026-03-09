@@ -56,3 +56,29 @@ html { scroll-behavior: smooth; }
 .counter.animate {
     transform: scale(1.1);
 }
+
+/* HAMBURGER MENU */
+.hamburger-bar {
+  width: 20px;
+  height: 2px;
+  background-color: #7c3aed; /* brand */
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+#menuBtn:hover .hamburger-bar {
+  background-color: #6d28d9;
+}
+
+/* OPEN STATE */
+.menu-open .hamburger-bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-open .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-open .hamburger-bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
