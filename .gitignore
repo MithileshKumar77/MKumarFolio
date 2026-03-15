@@ -1,6 +1,9 @@
 # Node
 node_modules/
 
+# Development Files
+dev/
+
 # Logs
 npm-debug.log*
 yarn-debug.log*

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Full Portfolio – Mithilesh Kumar | Graphic Designer</title>
+  <meta name="description"
+        content="Browse the complete portfolio of Mithilesh Kumar — 30+ projects across print & DTP, book covers, branding, educational publishing, and marketing collateral." />
+  <link rel="canonical" href="https://mkumarfolio.pages.dev/portfolio.html" />
+
+  <!-- FAVICONS (same as home) -->
+  <link rel="icon" href="/assets/icons/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/assets/icons/site.webmanifest" />
+  <meta name="theme-color" content="#7c3aed">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Full Portfolio – Mithilesh Kumar | Graphic Designer">
+  <meta property="og:description" content="30+ projects across print, DTP, book covers, branding, and publishing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mkumarfolio.pages.dev/portfolio.html">
+  <meta property="og:image" content="https://mkumarfolio.pages.dev/assets/og/og-preview.webp">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: '#7c3aed', soft: '#fdf4ff' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* ── SHARED WITH HOME ── */
+    .navbar-hidden { max-height:0; opacity:0; padding-top:0!important; padding-bottom:0!important; box-shadow:none!important; }
+    .navbar-visible { max-height:200px; opacity:1; }
+    #siteNavbar { transition: all 0.35s ease; overflow: hidden; }
+
+    .hamburger-bar {
+      width:20px; height:2px; background:#7c3aed;
+      transition:all 0.3s ease; transform-origin:center;
+    }
+    #menuBtn:hover .hamburger-bar { background:#6d28d9; }
+    .menu-open .hamburger-bar:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+    .menu-open .hamburger-bar:nth-child(2) { opacity:0; }
+    .menu-open .hamburger-bar:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.active { opacity:1; transform:translateY(0); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, #fdf4ff 0%, #f5f0ff 60%, #ede9fe 100%);
+    }
+    .page-hero-blob {
+      position:absolute; border-radius:9999px;
+      filter:blur(60px); pointer-events:none; opacity:0.3;
+    }
+
+    /* ── FILTER TABS ── */
+    .filter-tab {
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1.5px solid #e5e7eb;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: white;
+      white-space: nowrap;
+    }
+    .filter-tab:hover {
+      border-color: #7c3aed;
+      color: #7c3aed;
+    }
+    .filter-tab.active {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: white;
+      box-shadow: 0 4px 14px rgba(124,58,237,0.3);
+    }
+
+    /* ── PORTFOLIO GRID ── */
+    .port-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #f3f4f6;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .port-item:hover {
+      box-shadow: 0 12px 40px rgba(124,58,237,0.18);
+      transform: translateY(-3px);
+    }
+    .port-item img {
+      width:100%; height:100%;
+      object-fit:cover; display:block;
+      transition: transform 0.5s ease;
+    }
+    .port-item:hover img { transform: scale(1.06); }
+
+    /* Hover overlay */
+    .port-overlay {
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(124,58,237,0.85) 0%, rgba(124,58,237,0) 55%);
+      opacity:0;
+      transition: opacity 0.3s ease;
+      display:flex; align-items:flex-end;
+      padding:18px;
+    }
+    .port-item:hover .port-overlay { opacity:1; }
+    .port-overlay-label {
+      color:white; font-size:0.82rem; font-weight:600;
+      transform: translateY(6px);
+      transition: transform 0.3s ease;
+    }
+    .port-item:hover .port-overlay-label { transform:translateY(0); }
+
+    /* Category label badge */
+    .cat-badge {
+      position:absolute; top:10px; left:10px;
+      padding: 3px 10px;
+      background: rgba(255,255,255,0.9);
+      color: #7c3aed;
+      font-size:0.65rem; font-weight:700;
+      letter-spacing:0.08em; text-transform:uppercase;
+      border-radius:999px;
+      box-shadow:0 1px 6px rgba(0,0,0,0.1);
+    }
+
+    /* ── HIDDEN BY FILTER ── */
+    .port-item.hidden-item {
+      display: none;
+    }
+
+    /* ── FOOTER (same as home) ── */
+    #site-footer {
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox img {
+      max-height:85vh; max-width:90vw;
+      object-fit:contain; border-radius:8px;
+    }
+
+    /* ── BACK TO TOP ── */
+    #backToTop {
+      position:fixed; bottom:28px; right:28px;
+      width:44px; height:44px;
+      background:#7c3aed; color:white;
+      border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 16px rgba(124,58,237,0.4);
+      opacity:0; pointer-events:none;
+      transition:opacity 0.3s ease, transform 0.3s ease;
+      transform:translateY(8px);
+      cursor:pointer; z-index:40;
+    }
+    #backToTop.visible { opacity:1; pointer-events:auto; transform:translateY(0); }
+    #backToTop:hover { background:#6d28d9; }
+  </style>
+</head>
+
+<body class="font-sans text-gray-800 antialiased bg-white">
+
+  <!-- ─── NAVBAR (same structure as home) ─── -->
+  <header id="siteNavbar" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm navbar-visible">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+
+      <a href="index.html" class="text-xl font-bold text-gray-900 hover:text-brand transition">
+        Mithilesh Kumar
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="index.html#home"     class="hover:text-brand transition">Home</a>
+        <a href="index.html#about"    class="hover:text-brand transition">About</a>
+        <a href="index.html#services" class="hover:text-brand transition">Services</a>
+        <a href="portfolio.html"      class="text-brand font-semibold">Portfolio</a>
+        <a href="index.html#contact"  class="hover:text-brand transition">Contact</a>
+      </nav>
+
+      <!-- Desktop CTA -->
+      <a href="index.html#contact"
+         class="hidden md:inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold
+                px-5 py-2.5 rounded-lg hover:bg-purple-700 transition shadow-sm hover:shadow-md">
+        Hire Me
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button id="menuBtn"
+        class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5
+               rounded-lg bg-brand/10">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+
+    <!-- Mobile panel -->
+    <div id="mobileMenu"
+         class="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-soft shadow-2xl
+                translate-x-full transition-transform duration-300 md:hidden z-50">
+      <div class="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-100">
+        <span class="font-bold text-gray-900">Menu</span>
+        <button id="closeMenu"
+          class="w-10 h-10 flex items-center justify-center rounded-lg bg-brand/10 text-brand font-bold">
+          ✕
+        </button>
+      </div>
+      <nav class="px-6 py-10 space-y-6 text-base font-medium">
+        <a href="index.html"          class="block text-gray-700 hover:text-brand transition">Home</a>
+        <a href="index.html#about"    class="block text-gray-700 hover:text-brand transition">About</a>
+        <a href="index.html#services" class="block text-gray-700 hover:text-brand transition">Services</a>
+        <a href="portfolio.html"      class="block text-brand font-semibold">Portfolio</a>
+        <a href="index.html#contact"  class="block text-gray-700 hover:text-brand transition">Contact</a>
+        <a href="index.html#contact"
+           class="block mt-6 bg-brand text-white text-center px-5 py-3 rounded-lg font-semibold">
+          Hire Me
+        </a>
+      </nav>
+    </div>
+    <div id="menuBackdrop" class="fixed inset-0 bg-black/40 hidden md:hidden z-40"></div>
+  </header>
+
+
+  <!-- ─── PAGE HERO ─── -->
+  <section class="page-hero relative overflow-hidden py-20 md:py-28">
+    <div class="page-hero-blob w-96 h-96 bg-purple-300 -top-24 -right-16 absolute"></div>
+    <div class="page-hero-blob w-60 h-60 bg-violet-200 bottom-0 left-8 absolute"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+      <!-- Breadcrumb -->
+      <div class="flex items-center gap-2 text-sm text-gray-400 mb-8 reveal">
+        <a href="index.html" class="hover:text-brand transition">Home</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+        <span class="text-brand font-medium">Portfolio</span>
+      </div>
+
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 bg-brand/10 text-brand
+                    px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase
+                    mb-5 reveal">
+          <span class="w-2 h-2 bg-brand rounded-full animate-pulse"></span>
+          Complete Work Archive
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight reveal">
+          Full Portfolio
+        </h1>
+        <p class="mt-4 text-gray-500 text-base leading-relaxed max-w-xl reveal">
+          30 projects across print &amp; DTP, book covers, branding, educational publishing,
+          and marketing collateral — 15+ years of craft.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─── FILTER TABS ─── -->
+  <div class="sticky top-[68px] z-30 bg-white border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex gap-2.5 overflow-x-auto pb-1 no-scrollbar">
+        <button class="filter-tab active" data-filter="all">All Work</button>
+        <button class="filter-tab" data-filter="print-dtp">Print &amp; DTP</button>
+        <button class="filter-tab" data-filter="books">Book Covers</button>
+        <button class="filter-tab" data-filter="branding">Branding</button>
+        <button class="filter-tab" data-filter="publishing">Educational</button>
+        <button class="filter-tab" data-filter="marketing">Marketing</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ─── PORTFOLIO GRID ─── -->
+  <main class="max-w-7xl mx-auto px-6 py-16">
+
+    <!--
+      IMAGE NAMING CONVENTION used below:
+        assets/images/portfolio/p-01.webp  through  p-30.webp
+      Replace each src with actual client images.
+      The data-category attribute drives the filter.
+      The data-title appears in the lightbox and overlay.
+      
+      CATEGORIES:  print-dtp | books | branding | publishing | marketing
+    -->
+
+    <div id="portfolioGrid"
+         class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+
+      <!-- ── ROW 1 ── -->
+      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="0" data-title="Newspaper Layout — Daily Tribune">
+        <img src="assets/images/portfolio/p-01.webp" alt="Newspaper Layout" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Newspaper Layout ↗</span></div>
+        <span class="cat-badge">Print &amp; DTP</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="books" data-index="1" data-title="Children's Book Cover — The Magic Garden">
+        <img src="assets/images/portfolio/p-02.webp" alt="Children's Book Cover" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
+        <span class="cat-badge">Book Covers</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="branding" data-index="2" data-title="Brand Identity — Kala Bharti Co.">
+        <img src="assets/images/portfolio/p-03.webp" alt="Brand Identity" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Brand Identity ↗</span></div>
+        <span class="cat-badge">Branding</span>
+      </div>
+
+      <!-- ── ROW 2 ── -->
+      <div class="port-item aspect-square reveal" data-category="publishing" data-index="3" data-title="Educational Workbook — Maths Grade 4">
+        <img src="assets/images/portfolio/p-04.webp" alt="Educational Workbook" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Workbook Design ↗</span></div>
+        <span class="cat-badge">Educational</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="marketing" data-index="4" data-title="Event Backdrop — Corporate Summit">
+        <img src="assets/images/portfolio/p-05.webp" alt="Event Backdrop" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
+        <span class="cat-badge">Marketing</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="5" data-title="Magazine Spread — Arts Quarterly">
+        <img src="assets/images/portfolio/p-06.webp" alt="Magazine Spread" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
+        <span class="cat-badge">Print &amp; DTP</span>
+      </div>
+
+      <!-- ── ROW 3 ── -->
+      <div class="port-item aspect-square reveal" data-category="books" data-index="6" data-title="Novel Cover — The River Speaks">
+        <img src="assets/images/portfolio/p-07.webp" alt="Novel Cover" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
+        <span class="cat-badge">Book Covers</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="branding" data-index="7" data-title="Logo Suite — Sunrise Bakery">
+        <img src="assets/images/portfolio/p-08.webp" alt="Logo Design" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
+        <span class="cat-badge">Branding</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="publishing" data-index="8" data-title="Literacy Reader — Level 2">
+        <img src="assets/images/portfolio/p-09.webp" alt="Literacy Reader" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
+        <span class="cat-badge">Educational</span>
+      </div>
+
+      <!-- ── ROW 4 ── -->
+      <div class="port-item aspect-square reveal" data-category="marketing" data-index="9" data-title="Social Media Kit — Fashion Brand">
+        <img src="assets/images/portfolio/p-10.webp" alt="Social Media Kit" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
+        <span class="cat-badge">Marketing</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="10" data-title="Brochure Design — Real Estate">
+        <img src="assets/images/portfolio/p-11.webp" alt="Brochure Design" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
+        <span class="cat-badge">Print &amp; DTP</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="books" data-index="11" data-title="Academic Textbook Cover — Biology">
+        <img src="assets/images/portfolio/p-12.webp" alt="Textbook Cover" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
+        <span class="cat-badge">Book Covers</span>
+      </div>
+
+      <!-- ── ROW 5 ── -->
+      <div class="port-item aspect-square reveal" data-category="branding" data-index="12" data-title="Stationery Set — Consultancy Firm">
+        <img src="assets/images/portfolio/p-13.webp" alt="Stationery Set" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
+        <span class="cat-badge">Branding</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="publishing" data-index="13" data-title="Bilingual Reader — Hindi &amp; English">
+        <img src="assets/images/portfolio/p-14.webp" alt="Bilingual Reader" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
+        <span class="cat-badge">Educational</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="marketing" data-index="14" data-title="Print Banner — Cultural Festival">
+        <img src="assets/images/portfolio/p-15.webp" alt="Print Banner" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
+        <span class="cat-badge">Marketing</span>
+      </div>
+
+      <!-- ── ROW 6 ── -->
+      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="15" data-title="Annual Report Layout — NGO">
+        <img src="assets/images/portfolio/p-16.webp" alt="Annual Report" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
+        <span class="cat-badge">Print &amp; DTP</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="books" data-index="16" data-title="Self-Published Memoir Cover">
+        <img src="assets/images/portfolio/p-17.webp" alt="Memoir Cover" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
+        <span class="cat-badge">Book Covers</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="branding" data-index="17" data-title="Packaging Design — Artisan Products">
+        <img src="assets/images/portfolio/p-18.webp" alt="Packaging Design" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
+        <span class="cat-badge">Branding</span>
+      </div>
+
+      <!-- ── ROW 7 ── -->
+      <div class="port-item aspect-square reveal" data-category="publishing" data-index="18" data-title="Numeracy Workbook — Grade 1">
+        <img src="assets/images/portfolio/p-19.webp" alt="Numeracy Workbook" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
+        <span class="cat-badge">Educational</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="marketing" data-index="19" data-title="House Journal — Corporate Monthly">
+        <img src="assets/images/portfolio/p-20.webp" alt="House Journal" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
+        <span class="cat-badge">Marketing</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="20" data-title="Catalogue Layout — Textiles">
+        <img src="assets/images/portfolio/p-21.webp" alt="Catalogue Layout" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
+        <span class="cat-badge">Print &amp; DTP</span>
+      </div>
+
+      <!-- ── ROW 8 ── -->
+      <div class="port-item aspect-square reveal" data-category="books" data-index="21" data-title="Poetry Collection Cover — Seasonal Verse">
+        <img src="assets/images/portfolio/p-22.webp" alt="Poetry Collection" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
+        <span class="cat-badge">Book Covers</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="branding" data-index="22" data-title="Visual Identity — School">
+        <img src="assets/images/portfolio/p-23.webp" alt="School Visual Identity" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
+        <span class="cat-badge">Branding</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="publishing" data-index="23" data-title="Science Activity Book — Grade 3">
+        <img src="assets/images/portfolio/p-24.webp" alt="Science Activity Book" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
+        <span class="cat-badge">Educational</span>
+      </div>
+
+      <!-- ── ROW 9 ── -->
+      <div class="port-item aspect-square reveal" data-category="marketing" data-index="24" data-title="Flyer Design — Charity Run">
+        <img src="assets/images/portfolio/p-25.webp" alt="Flyer Design" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
+        <span class="cat-badge">Marketing</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="25" data-title="Product Manual — Electronics">
+        <img src="assets/images/portfolio/p-26.webp" alt="Product Manual" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
+        <span class="cat-badge">Print &amp; DTP</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="books" data-index="26" data-title="Short Story Anthology Cover">
+        <img src="assets/images/portfolio/p-27.webp" alt="Anthology Cover" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
+        <span class="cat-badge">Book Covers</span>
+      </div>
+
+      <!-- ── ROW 10 ── -->
+      <div class="port-item aspect-square reveal" data-category="branding" data-index="27" data-title="Menu Design — Restaurant Chain">
+        <img src="assets/images/portfolio/p-28.webp" alt="Menu Design" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
+        <span class="cat-badge">Branding</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="publishing" data-index="28" data-title="Teacher's Guide — Primary English">
+        <img src="assets/images/portfolio/p-29.webp" alt="Teacher's Guide" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
+        <span class="cat-badge">Educational</span>
+      </div>
+
+      <div class="port-item aspect-square reveal" data-category="marketing" data-index="29" data-title="Brand Campaign — Local Business">
+        <img src="assets/images/portfolio/p-30.webp" alt="Brand Campaign" loading="lazy">
+        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
+        <span class="cat-badge">Marketing</span>
+      </div>
+
+    </div><!-- /portfolioGrid -->
+
+    <!-- Empty state (shows when filter has no results) -->
+    <div id="emptyState" class="hidden text-center py-24">
+      <div class="text-5xl mb-4">🎨</div>
+      <p class="text-gray-400 text-base">No projects in this category yet.</p>
+    </div>
+
+    <!-- ── BACK TO HOME ── -->
+    <div class="mt-20 flex justify-center reveal">
+      <a href="index.html"
+         class="group inline-flex items-center gap-3
+                border-2 border-brand text-brand
+                px-8 py-3.5 rounded-xl font-semibold text-sm
+                hover:bg-brand hover:text-white
+                transition duration-200">
+        <svg class="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1"
+             fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+        </svg>
+        Back to Home
+      </a>
+    </div>
+
+  </main>
+
+
+  <!-- ─── FOOTER (identical to home) ─── -->
+  <footer id="site-footer" class="text-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+        <!-- Brand -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Mithilesh Kumar</h3>
+          <p class="text-purple-200 text-sm leading-relaxed">
+            15+ years of multidisciplinary design experience bridging traditional
+            craftsmanship with modern design trends.
+          </p>
+          <div class="flex gap-3 mt-6">
+            <a href="https://www.linkedin.com/in/kala-bharti-graphic-designing-services/"
+               target="_blank" rel="noopener" aria-label="LinkedIn"
+               class="w-10 h-10 flex items-center justify-center bg-white/15 rounded-lg hover:bg-white/30 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.82-2.2 3.75-2.2 4 0 4.7 2.63 4.7 6.05V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/kalabharti.kumar98/"
+               target="_blank" rel="noopener" aria-label="Instagram"
+               class="w-10 h-10 flex items-center justify-center bg-white/15 rounded-lg hover:bg-white/30 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.06 1.97.24 2.43.41a4.92 4.92 0 011.78 1.03 4.92 4.92 0 011.03 1.78c.17.46.35 1.26.41 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.06 1.17-.24 1.97-.41 2.43a4.92 4.92 0 01-1.03 1.78 4.92 4.92 0 01-1.78 1.03c-.46.17-1.26.35-2.43.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.06-1.97-.24-2.43-.41a4.92 4.92 0 01-1.78-1.03 4.92 4.92 0 01-1.03-1.78c-.17-.46-.35-1.26-.41-2.43C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.06-1.17.24-1.97.41-2.43A4.92 4.92 0 013.71 2.7a4.92 4.92 0 011.78-1.03c.46-.17 1.26-.35 2.43-.41C8.42 2.21 8.8 2.2 12 2.2zm0 3.2a6.6 6.6 0 100 13.2 6.6 6.6 0 000-13.2zm0 10.9a4.3 4.3 0 110-8.6 4.3 4.3 0 010 8.6zm6.85-11.1a1.55 1.55 0 11-3.1 0 1.55 1.55 0 013.1 0z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div>
+          <h4 class="text-base font-semibold mb-5 text-white">Navigation</h4>
+          <ul class="space-y-3 text-purple-200 text-sm">
+            <li><a href="index.html"          class="hover:text-white transition">Home</a></li>
+            <li><a href="index.html#about"    class="hover:text-white transition">About</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition">Services</a></li>
+            <li><a href="portfolio.html"      class="hover:text-white transition font-semibold text-white">Portfolio</a></li>
+            <li><a href="index.html#contact"  class="hover:text-white transition">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="text-base font-semibold mb-5 text-white">Services</h4>
+          <ul class="space-y-3 text-purple-200 text-sm">
+            <li>Publishing &amp; Layout</li>
+            <li>Book Cover Design</li>
+            <li>Brand &amp; Identity</li>
+            <li>Marketing Collateral</li>
+            <li>Print Production &amp; DTP</li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-base font-semibold mb-5 text-white">Contact</h4>
+          <div class="space-y-3 text-purple-200 text-sm">
+            <p>
+              <span class="text-purple-300 font-medium">Email:</span><br>
+              <a href="mailto:kalabharti.kumar98@gmail.com"
+                 class="hover:text-white transition break-all">
+                kalabharti.kumar98@gmail.com
+              </a>
+            </p>
+            <p>
+              <span class="text-purple-300 font-medium">Phone:</span><br>
+              <a href="tel:+919310705040" class="hover:text-white transition">+91 93107 05040</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-14 pt-6 border-t border-white/15 flex flex-col sm:flex-row
+                  items-center justify-between gap-4 text-sm text-purple-300">
+        <p>© 2026 Mithilesh Kumar — Graphic Design and Print</p>
+        <p class="text-purple-400 text-xs">Designed with care · Built with precision</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ─── LIGHTBOX ─── -->
+  <div id="lightbox"
+       class="fixed inset-0 bg-black/92 hidden items-center justify-center z-[999] backdrop-blur-sm">
+
+    <button id="lightboxClose"
+      class="absolute top-5 right-5 w-11 h-11 flex items-center justify-center
+             bg-white/15 backdrop-blur-md rounded-full text-white text-xl
+             hover:bg-white/30 transition z-10">✕</button>
+
+    <button id="lightboxPrev"
+      class="absolute left-5 w-11 h-11 flex items-center justify-center
+             bg-white/15 backdrop-blur-md rounded-full text-white text-2xl
+             hover:bg-white/30 transition">‹</button>
+
+    <button id="lightboxNext"
+      class="absolute right-5 w-11 h-11 flex items-center justify-center
+             bg-white/15 backdrop-blur-md rounded-full text-white text-2xl
+             hover:bg-white/30 transition">›</button>
+
+    <!-- Title bar -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2
+                bg-black/60 backdrop-blur-md px-6 py-3 rounded-full text-white text-sm font-medium"
+         id="lightboxTitle"></div>
+
+    <img id="lightboxImage" src="" alt="Portfolio image"
+         class="rounded-xl shadow-2xl"
+         style="max-height:82vh; max-width:88vw; object-fit:contain;">
+  </div>
+
+
+  <!-- ─── BACK TO TOP ─── -->
+  <button id="backToTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+    </svg>
+  </button>
+
+
+  <!-- ─── SCRIPTS ─── -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    /* ── Mobile menu ── */
+    const menuBtn    = document.getElementById('menuBtn');
+    const closeMenu  = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const backdrop   = document.getElementById('menuBackdrop');
+    function openMenu()  { menuBtn.classList.add('menu-open');    mobileMenu.classList.remove('translate-x-full'); backdrop?.classList.remove('hidden'); }
+    function closePanel(){ menuBtn.classList.remove('menu-open'); mobileMenu.classList.add('translate-x-full');    backdrop?.classList.add('hidden'); }
+    menuBtn.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closePanel);
+    backdrop?.addEventListener('click', closePanel);
+    document.querySelectorAll('#mobileMenu a').forEach(l => l.addEventListener('click', closePanel));
+
+    /* ── Scroll reveal ── */
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('active'); revObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+    /* ── Stagger grid items ── */
+    document.querySelectorAll('#portfolioGrid .port-item').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 3) * 60}ms`;
+    });
+
+    /* ── Filter tabs ── */
+    const tabs  = document.querySelectorAll('.filter-tab');
+    const items = document.querySelectorAll('.port-item');
+    const empty = document.getElementById('emptyState');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const filter = tab.dataset.filter;
+        let visible  = 0;
+
+        items.forEach(item => {
+          const match = filter === 'all' || item.dataset.category === filter;
+          item.classList.toggle('hidden-item', !match);
+          if (match) visible++;
+        });
+
+        empty.classList.toggle('hidden', visible > 0);
+      });
+    });
+
+    /* ── Lightbox ── */
+    const lightbox   = document.getElementById('lightbox');
+    const lbImg      = document.getElementById('lightboxImage');
+    const lbTitle    = document.getElementById('lightboxTitle');
+    const lbClose    = document.getElementById('lightboxClose');
+    const lbNext     = document.getElementById('lightboxNext');
+    const lbPrev     = document.getElementById('lightboxPrev');
+
+    // Only the currently visible items participate in lightbox nav
+    function visibleItems() {
+      return Array.from(document.querySelectorAll('.port-item:not(.hidden-item)'));
+    }
+    let cur = 0;
+
+    function openLB(index) {
+      const vis = visibleItems();
+      cur = index;
+      const item = vis[cur];
+      lbImg.src     = item.querySelector('img').src;
+      lbTitle.textContent = item.dataset.title || '';
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    function showNext() {
+      const vis = visibleItems();
+      cur = (cur + 1) % vis.length;
+      lbImg.src = vis[cur].querySelector('img').src;
+      lbTitle.textContent = vis[cur].dataset.title || '';
+    }
+    function showPrev() {
+      const vis = visibleItems();
+      cur = (cur - 1 + vis.length) % vis.length;
+      lbImg.src = vis[cur].querySelector('img').src;
+      lbTitle.textContent = vis[cur].dataset.title || '';
+    }
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const vis = visibleItems();
+        const idx = vis.indexOf(item);
+        if (idx !== -1) openLB(idx);
+      });
+    });
+
+    lbClose.addEventListener('click', closeLB);
+    lbNext.addEventListener('click', showNext);
+    lbPrev.addEventListener('click', showPrev);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape')     closeLB();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft')  showPrev();
+    });
+
+    let tx = 0;
+    lightbox.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+    lightbox.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (dx >  50) showPrev();
+      if (dx < -50) showNext();
+    });
+
+    /* ── Back to top ── */
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      btt.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  });
+  </script>
+
+</body>
+</html>
