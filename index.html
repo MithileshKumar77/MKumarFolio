@@ -165,26 +165,6 @@
     .counter { transition: transform 0.3s ease; }
     .counter.animate { transform: scale(1.05); }
 
-    /* ── PORTFOLIO HOVER TITLE ── */
-    .port-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(124,58,237,0.82) 0%, rgba(124,58,237,0) 55%);
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      display: flex; align-items: flex-end;
-      padding: 20px;
-    }
-    .port-btn:hover .port-overlay,
-    .port-btn:focus .port-overlay { opacity: 1; }
-    .port-overlay-text {
-      color: white;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transform: translateY(6px);
-      transition: transform 0.35s ease;
-    }
-    .port-btn:hover .port-overlay-text { transform: translateY(0); }
-
     /* ── ABOUT FEATURE CARD ── */
     .about-card {
       border-left: 3px solid transparent;
@@ -265,14 +245,6 @@
     /* ── FOOTER ── */
     #site-footer {
       background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-    }
-
-    /* LIGHTBOX */
-    #lightbox img {
-      max-height: 85vh;
-      max-width: 90vw;
-      object-fit: contain;
-      border-radius: 8px;
     }
   
     /* ── MARQUEE ── */
@@ -1081,39 +1053,6 @@
   </footer>
 
 
-  <!-- ─── LIGHTBOX ─── -->
-  <div id="lightbox"
-       class="fixed inset-0 bg-black/90 hidden items-center justify-center z-[999]
-              backdrop-blur-sm">
-
-    <button id="lightboxClose"
-      class="absolute top-5 right-5 w-11 h-11 flex items-center justify-center
-             bg-white/15 backdrop-blur-md rounded-full text-white text-xl
-             hover:bg-white/30 transition z-10">
-      ✕
-    </button>
-
-    <button id="lightboxPrev"
-      class="absolute left-5 w-11 h-11 flex items-center justify-center
-             bg-white/15 backdrop-blur-md rounded-full text-white text-2xl
-             hover:bg-white/30 transition">
-      ‹
-    </button>
-
-    <button id="lightboxNext"
-      class="absolute right-5 w-11 h-11 flex items-center justify-center
-             bg-white/15 backdrop-blur-md rounded-full text-white text-2xl
-             hover:bg-white/30 transition">
-      ›
-    </button>
-
-    <img id="lightboxImage"
-         src=""
-         alt="Lightbox image"
-         class="rounded-xl shadow-2xl"
-         style="max-height:85vh; max-width:90vw; object-fit:contain;">
-  </div>
-
   <!-- Mobile Menu Panel -->
   <div id="mobileMenu"
         class="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-soft shadow-2xl
@@ -1260,51 +1199,6 @@
         });
       }, { threshold: 0.4 }).observe(statsSection);
     }
-
-    /* ── Lightbox ── */
-    const lightbox     = document.getElementById('lightbox');
-    const lightboxImg  = document.getElementById('lightboxImage');
-    const closeBtn     = document.getElementById('lightboxClose');
-    const nextBtn      = document.getElementById('lightboxNext');
-    const prevBtn      = document.getElementById('lightboxPrev');
-    const portBtns     = document.querySelectorAll('.port-btn');
-    const images       = Array.from(portBtns).map(b => b.querySelector('img')?.src).filter(Boolean);
-    let cur            = 0;
-
-    function openLB(i) {
-      cur = i;
-      lightboxImg.src = images[cur];
-      lightbox.classList.remove('hidden');
-      lightbox.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLB() {
-      lightbox.classList.add('hidden');
-      lightbox.classList.remove('flex');
-      document.body.style.overflow = '';
-    }
-    function showNext() { cur = (cur + 1) % images.length; lightboxImg.src = images[cur]; }
-    function showPrev() { cur = (cur - 1 + images.length) % images.length; lightboxImg.src = images[cur]; }
-
-    portBtns.forEach((btn, i) => btn.addEventListener('click', () => openLB(i)));
-    closeBtn.addEventListener('click', closeLB);
-    nextBtn.addEventListener('click', showNext);
-    prevBtn.addEventListener('click', showPrev);
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape')      closeLB();
-      if (e.key === 'ArrowRight')  showNext();
-      if (e.key === 'ArrowLeft')   showPrev();
-    });
-
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-    lightbox.addEventListener('touchend',   e => {
-      const dx = e.changedTouches[0].clientX - touchStartX;
-      if (dx > 50) showPrev();
-      if (dx < -50) showNext();
-    });
 
   });
   </script>
