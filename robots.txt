@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://prasenjeetsc.github.io/MKumarFolio/sitemap.xml
+Sitemap: https://kalabharti.in/sitemap.xml
