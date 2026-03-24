@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Full Portfolio – Mithilesh Kumar | Graphic Designer</title>
+  <title>Portfolio – Mithilesh Kumar | Graphic Designer</title>
   <meta name="description"
-        content="Browse the complete portfolio of Mithilesh Kumar — 30+ projects across print & DTP, book covers, branding, educational publishing, and marketing collateral." />
+        content="Explore Mithilesh Kumar's portfolio across 11 design disciplines — from Brochures and Logos to Magazine Covers and Educational Books." />
   <link rel="canonical" href="https://kalabharti.in/portfolio.html" />
 
-  <!-- FAVICONS (same as home) -->
+  <!-- FAVICONS -->
   <link rel="icon" href="/assets/icons/favicon.ico" />
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
@@ -18,8 +18,8 @@
   <meta name="theme-color" content="#7c3aed">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Full Portfolio – Mithilesh Kumar | Graphic Designer">
-  <meta property="og:description" content="30+ projects across print, DTP, book covers, branding, and publishing.">
+  <meta property="og:title" content="Portfolio – Mithilesh Kumar | Graphic Designer">
+  <meta property="og:description" content="Explore 11 categories of design work — print, branding, publishing, and more.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kalabharti.in/portfolio.html">
   <meta property="og:image" content="https://kalabharti.in/assets/og/og-preview.webp">
@@ -27,7 +27,7 @@
   <!-- STYLESHEET -->
   <link rel="stylesheet" href="assets/css/output.css" />
 
-  <!-- Inter font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@
   <style>
     html { scroll-behavior: smooth; }
 
-    /* ── SHARED WITH HOME ── */
+    /* ── SHARED ── */
     .navbar-visible { max-height:200px; opacity:1; }
     #siteNavbar { transition: all 0.35s ease; overflow: hidden; }
 
@@ -60,94 +60,109 @@
       filter:blur(60px); pointer-events:none; opacity:0.3;
     }
 
-    /* ── FILTER TABS ── */
-    .filter-tab {
-      padding: 8px 20px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      border: 1.5px solid #e5e7eb;
-      color: #6b7280;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      background: white;
-      white-space: nowrap;
-    }
-    .filter-tab:hover {
-      border-color: #7c3aed;
-      color: #7c3aed;
-    }
-    .filter-tab.active {
-      background: #7c3aed;
-      border-color: #7c3aed;
-      color: white;
-      box-shadow: 0 4px 14px rgba(124,58,237,0.3);
-    }
-
-    /* ── PORTFOLIO GRID ── */
-    .port-item {
+    /* ── CATEGORY GRID ── */
+    .cat-card {
       position: relative;
       overflow: hidden;
-      border-radius: 16px;
-      background: #f3f4f6;
+      border-radius: 20px;
+      background: white;
+      border: 1.5px solid #f0e8ff;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 2px 12px rgba(124,58,237,0.07);
+      transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      group: true;
     }
-    .port-item:hover {
-      box-shadow: 0 12px 40px rgba(124,58,237,0.18);
-      transform: translateY(-3px);
+    .cat-card:hover {
+      box-shadow: 0 16px 48px rgba(124,58,237,0.2);
+      transform: translateY(-5px);
+      border-color: #c4b5fd;
     }
-    .port-item img {
-      width:100%; height:100%;
-      object-fit:cover; display:block;
-      transition: transform 0.5s ease;
-    }
-    .port-item:hover img { transform: scale(1.06); }
 
-    /* Hover overlay */
-    .port-overlay {
-      position:absolute; inset:0;
-      background: linear-gradient(to top, rgba(124,58,237,0.85) 0%, rgba(124,58,237,0) 55%);
-      opacity:0;
-      transition: opacity 0.3s ease;
-      display:flex; align-items:flex-end;
-      padding:18px;
+    /* Thumbnail area */
+    .cat-thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f5f0ff, #ede9fe);
+      position: relative;
     }
-    .port-item:hover .port-overlay { opacity:1; }
-    .port-overlay-label {
-      color:white; font-size:0.82rem; font-weight:600;
-      transform: translateY(6px);
-      transition: transform 0.3s ease;
+    .cat-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.55s ease;
     }
-    .port-item:hover .port-overlay-label { transform:translateY(0); }
+    .cat-card:hover .cat-thumb img { transform: scale(1.07); }
 
-    /* Category label badge */
-    .cat-badge {
-      position:absolute; top:10px; left:10px;
-      padding: 3px 10px;
-      background: rgba(255,255,255,0.9);
+    /* Gradient overlay on thumb */
+    .cat-thumb-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(124,58,237,0) 40%,
+        rgba(124,58,237,0.45) 100%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .cat-card:hover .cat-thumb-overlay { opacity: 1; }
+
+    /* Placeholder icon for categories without images */
+    .cat-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #f5f0ff 0%, #ede9fe 100%);
+    }
+    .cat-placeholder svg { opacity: 0.18; }
+
+    /* Card body */
+    .cat-body {
+      padding: 20px 22px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 1;
+    }
+    .cat-name {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: #1f1535;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .cat-arrow {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: #f5f0ff;
+      display: flex; align-items: center; justify-content: center;
       color: #7c3aed;
-      font-size:0.65rem; font-weight:700;
-      letter-spacing:0.08em; text-transform:uppercase;
-      border-radius:999px;
-      box-shadow:0 1px 6px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .cat-card:hover .cat-arrow {
+      background: #7c3aed;
+      color: white;
+      transform: translateX(3px);
     }
 
-    /* ── HIDDEN BY FILTER ── */
-    .port-item.hidden-item {
-      display: none;
+    /* Count badge on thumb */
+    .cat-count {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: rgba(255,255,255,0.92);
+      color: #7c3aed;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
     }
 
-    /* ── FOOTER (same as home) ── */
+    /* ── FOOTER ── */
     #site-footer {
       background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-    }
-
-    /* ── LIGHTBOX ── */
-    #lightbox img {
-      max-height:85vh; max-width:90vw;
-      object-fit:contain; border-radius:8px;
     }
 
     /* ── BACK TO TOP ── */
@@ -165,12 +180,33 @@
     }
     #backToTop.visible { opacity:1; pointer-events:auto; transform:translateY(0); }
     #backToTop:hover { background:#6d28d9; }
+
+    /* Divider accent */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7c3aed;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: #c4b5fd;
+      border-radius: 2px;
+    }
   </style>
 </head>
 
 <body class="font-sans text-gray-800 antialiased bg-white">
 
-  <!-- ─── NAVBAR (same structure as home) ─── -->
+  <!-- ─── NAVBAR ─── -->
   <header id="siteNavbar" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm navbar-visible">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
@@ -227,14 +263,14 @@
                     px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase
                     mb-5 reveal">
           <span class="w-2 h-2 bg-brand rounded-full animate-pulse"></span>
-          Complete Work Archive
+          15+ Years of Craft
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight reveal">
-          Full Portfolio
+          Portfolio
         </h1>
         <p class="mt-4 text-gray-500 text-base leading-relaxed max-w-xl reveal">
-          30 projects across print &amp; DTP, book covers, branding, educational publishing,
-          and marketing collateral — 15+ years of craft.
+          Browse work across 11 disciplines — from brand identities and publication design
+          to packaging, social media, and editorial. Select a category to explore.
         </p>
       </div>
 
@@ -242,237 +278,251 @@
   </section>
 
 
-  <!-- ─── FILTER TABS ─── -->
-  <div class="sticky top-[68px] z-30 bg-white border-b border-gray-100 shadow-sm">
-    <div class="max-w-7xl mx-auto px-6 py-4">
-      <div class="flex gap-2.5 overflow-x-auto pb-1 no-scrollbar">
-        <button class="filter-tab active" data-filter="all">All Work</button>
-        <button class="filter-tab" data-filter="print-dtp">Print &amp; DTP</button>
-        <button class="filter-tab" data-filter="books">Book Covers</button>
-        <button class="filter-tab" data-filter="branding">Branding</button>
-        <button class="filter-tab" data-filter="publishing">Educational</button>
-        <button class="filter-tab" data-filter="marketing">Newspaper-Ads</button>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ─── PORTFOLIO GRID ─── -->
+  <!-- ─── CATEGORY SELECTION ─── -->
   <main class="max-w-7xl mx-auto px-6 py-16">
 
+    <!-- Section heading -->
+    <div class="flex flex-col items-center text-center mb-14 reveal">
+      <span class="section-label mb-4">Categories</span>
+      <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
+        Choose a Discipline
+      </h2>
+      <p class="mt-3 text-gray-400 text-sm max-w-md">
+        Each category holds a curated collection of projects. Click to dive in.
+      </p>
+    </div>
+
     <!--
-      IMAGE NAMING CONVENTION used below:
-        assets/images/portfolio/p-01.webp  through  p-30.webp
-      Replace each src with actual client images.
-      The data-category attribute drives the filter.
-      The data-title appears in the lightbox and overlay.
-      
-      CATEGORIES:  print-dtp | books | branding | publishing | marketing
+      CATEGORY GRID — 11 cards
+      data-slug maps to:  portfolio-[slug].html
+      Update cat-count text with actual project counts when known.
+      Replace placeholder thumbnail src with a representative cover image per category:
+        assets/images/portfolio/cat-brochures.webp
+        assets/images/portfolio/cat-calendars.webp
+        ... etc.
     -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5" id="categoryGrid">
 
-    <div id="portfolioGrid"
-         class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+      <!-- 1. Brochures -->
+      <a href="portfolio-brochures.html" class="cat-card reveal" style="transition-delay:0ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-brochures.webp" alt="Brochures" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Brochures</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
 
-      <!-- ── ROW 1 ── -->
-      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="0" data-title="Newspaper Layout — Daily Tribune">
-        <img src="assets/images/portfolio/p-01.webp" alt="Newspaper Layout" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Newspaper Layout ↗</span></div>
-        <span class="cat-badge">Print &amp; DTP</span>
+      <!-- 2. Calendars -->
+      <a href="portfolio-calendars.html" class="cat-card reveal" style="transition-delay:60ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-calendars.webp" alt="Calendars" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Calendars</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 3. Educational Books -->
+      <a href="portfolio-educational-books.html" class="cat-card reveal" style="transition-delay:120ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-educational-books.webp" alt="Educational Books" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Educational Books</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 4. Letter Head -->
+      <a href="portfolio-letter-head.html" class="cat-card reveal" style="transition-delay:0ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-letter-head.webp" alt="Letter Head" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Letter Head</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 5. Literature Book Cover -->
+      <a href="portfolio-literature-book-cover.html" class="cat-card reveal" style="transition-delay:60ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-literature-book-cover.webp" alt="Literature Book Cover" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Literature Book Cover</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 6. Logos -->
+      <a href="portfolio-logos.html" class="cat-card reveal" style="transition-delay:120ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-logos.webp" alt="Logos" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Logos</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 7. Magazine Cover -->
+      <a href="portfolio-magazine-cover.html" class="cat-card reveal" style="transition-delay:0ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-magazine-cover.webp" alt="Magazine Cover" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Magazine Cover</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 8. Newspaper Ads -->
+      <a href="portfolio-newspaper-ads.html" class="cat-card reveal" style="transition-delay:60ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-newspaper-ads.webp" alt="Newspaper Ads" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Newspaper Ads</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 9. Packaging Item -->
+      <a href="portfolio-packaging-item.html" class="cat-card reveal" style="transition-delay:120ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-packaging-item.webp" alt="Packaging Item" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Packaging Item</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 10. Posters -->
+      <a href="portfolio-posters.html" class="cat-card reveal" style="transition-delay:0ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-posters.webp" alt="Posters" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Posters</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 11. Social Media -->
+      <a href="portfolio-social-media.html" class="cat-card reveal" style="transition-delay:60ms">
+        <div class="cat-thumb">
+          <img src="assets/images/portfolio/cat-social-media.webp" alt="Social Media" loading="lazy"
+               onerror="this.parentElement.classList.add('img-failed')">
+          <div class="cat-thumb-overlay"></div>
+          <span class="cat-count">View All</span>
+        </div>
+        <div class="cat-body">
+          <span class="cat-name">Social Media</span>
+          <span class="cat-arrow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div><!-- /categoryGrid -->
+
+    <!-- ── CTA STRIP ── -->
+    <div class="mt-20 rounded-2xl bg-gradient-to-br from-brand to-purple-700 px-8 py-10
+                flex flex-col md:flex-row items-center justify-between gap-6 reveal">
+      <div>
+        <p class="text-white/70 text-xs font-semibold uppercase tracking-widest mb-1">Have a project in mind?</p>
+        <h3 class="text-white text-xl md:text-2xl font-extrabold">Let's work together.</h3>
       </div>
-
-      <div class="port-item aspect-square reveal" data-category="books" data-index="1" data-title="Children's Book Cover — The Magic Garden">
-        <img src="assets/images/portfolio/p-02.webp" alt="Children's Book Cover" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
-        <span class="cat-badge">Book Covers</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="branding" data-index="2" data-title="Brand Identity — Kala Bharti Co.">
-        <img src="assets/images/portfolio/p-03.webp" alt="Brand Identity" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Brand Identity ↗</span></div>
-        <span class="cat-badge">Branding</span>
-      </div>
-
-      <!-- ── ROW 2 ── -->
-      <div class="port-item aspect-square reveal" data-category="publishing" data-index="3" data-title="Educational Workbook — Maths Grade 4">
-        <img src="assets/images/portfolio/p-04.webp" alt="Educational Workbook" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Workbook Design ↗</span></div>
-        <span class="cat-badge">Educational</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="marketing" data-index="4" data-title="Event Backdrop — Corporate Summit">
-        <img src="assets/images/portfolio/p-05.webp" alt="Event Backdrop" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
-        <span class="cat-badge">Marketing</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="5" data-title="Magazine Spread — Arts Quarterly">
-        <img src="assets/images/portfolio/p-06.webp" alt="Magazine Spread" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
-        <span class="cat-badge">Print &amp; DTP</span>
-      </div>
-
-      <!-- ── ROW 3 ── -->
-      <div class="port-item aspect-square reveal" data-category="books" data-index="6" data-title="Novel Cover — The River Speaks">
-        <img src="assets/images/portfolio/p-07.webp" alt="Novel Cover" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
-        <span class="cat-badge">Book Covers</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="branding" data-index="7" data-title="Logo Suite — Sunrise Bakery">
-        <img src="assets/images/portfolio/p-08.webp" alt="Logo Design" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
-        <span class="cat-badge">Branding</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="publishing" data-index="8" data-title="Literacy Reader — Level 2">
-        <img src="assets/images/portfolio/p-09.webp" alt="Literacy Reader" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
-        <span class="cat-badge">Educational</span>
-      </div>
-
-      <!-- ── ROW 4 ── -->
-      <div class="port-item aspect-square reveal" data-category="marketing" data-index="9" data-title="Social Media Kit — Fashion Brand">
-        <img src="assets/images/portfolio/p-10.webp" alt="Social Media Kit" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
-        <span class="cat-badge">Marketing</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="10" data-title="Brochure Design — Real Estate">
-        <img src="assets/images/portfolio/p-11.webp" alt="Brochure Design" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
-        <span class="cat-badge">Print &amp; DTP</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="books" data-index="11" data-title="Academic Textbook Cover — Biology">
-        <img src="assets/images/portfolio/p-12.webp" alt="Textbook Cover" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
-        <span class="cat-badge">Book Covers</span>
-      </div>
-
-      <!-- ── ROW 5 ── -->
-      <div class="port-item aspect-square reveal" data-category="branding" data-index="12" data-title="Stationery Set — Consultancy Firm">
-        <img src="assets/images/portfolio/p-13.webp" alt="Stationery Set" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
-        <span class="cat-badge">Branding</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="publishing" data-index="13" data-title="Bilingual Reader — Hindi &amp; English">
-        <img src="assets/images/portfolio/p-14.webp" alt="Bilingual Reader" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
-        <span class="cat-badge">Educational</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="marketing" data-index="14" data-title="Print Banner — Cultural Festival">
-        <img src="assets/images/portfolio/p-15.webp" alt="Print Banner" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
-        <span class="cat-badge">Marketing</span>
-      </div>
-
-      <!-- ── ROW 6 ── -->
-      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="15" data-title="Annual Report Layout — NGO">
-        <img src="assets/images/portfolio/p-16.webp" alt="Annual Report" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
-        <span class="cat-badge">Print &amp; DTP</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="books" data-index="16" data-title="Self-Published Memoir Cover">
-        <img src="assets/images/portfolio/p-17.webp" alt="Memoir Cover" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
-        <span class="cat-badge">Book Covers</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="branding" data-index="17" data-title="Packaging Design — Artisan Products">
-        <img src="assets/images/portfolio/p-18.webp" alt="Packaging Design" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
-        <span class="cat-badge">Branding</span>
-      </div>
-
-      <!-- ── ROW 7 ── -->
-      <div class="port-item aspect-square reveal" data-category="publishing" data-index="18" data-title="Numeracy Workbook — Grade 1">
-        <img src="assets/images/portfolio/p-19.webp" alt="Numeracy Workbook" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
-        <span class="cat-badge">Educational</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="marketing" data-index="19" data-title="House Journal — Corporate Monthly">
-        <img src="assets/images/portfolio/p-20.webp" alt="House Journal" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
-        <span class="cat-badge">Marketing</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="20" data-title="Catalogue Layout — Textiles">
-        <img src="assets/images/portfolio/p-21.webp" alt="Catalogue Layout" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
-        <span class="cat-badge">Print &amp; DTP</span>
-      </div>
-
-      <!-- ── ROW 8 ── -->
-      <div class="port-item aspect-square reveal" data-category="books" data-index="21" data-title="Poetry Collection Cover — Seasonal Verse">
-        <img src="assets/images/portfolio/p-22.webp" alt="Poetry Collection" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
-        <span class="cat-badge">Book Covers</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="branding" data-index="22" data-title="Visual Identity — School">
-        <img src="assets/images/portfolio/p-23.webp" alt="School Visual Identity" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
-        <span class="cat-badge">Branding</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="publishing" data-index="23" data-title="Science Activity Book — Grade 3">
-        <img src="assets/images/portfolio/p-24.webp" alt="Science Activity Book" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
-        <span class="cat-badge">Educational</span>
-      </div>
-
-      <!-- ── ROW 9 ── -->
-      <div class="port-item aspect-square reveal" data-category="marketing" data-index="24" data-title="Flyer Design — Charity Run">
-        <img src="assets/images/portfolio/p-25.webp" alt="Flyer Design" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
-        <span class="cat-badge">Marketing</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="print-dtp" data-index="25" data-title="Product Manual — Electronics">
-        <img src="assets/images/portfolio/p-26.webp" alt="Product Manual" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Print &amp; DTP ↗</span></div>
-        <span class="cat-badge">Print &amp; DTP</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="books" data-index="26" data-title="Short Story Anthology Cover">
-        <img src="assets/images/portfolio/p-27.webp" alt="Anthology Cover" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Book Cover ↗</span></div>
-        <span class="cat-badge">Book Covers</span>
-      </div>
-
-      <!-- ── ROW 10 ── -->
-      <div class="port-item aspect-square reveal" data-category="branding" data-index="27" data-title="Menu Design — Restaurant Chain">
-        <img src="assets/images/portfolio/p-28.webp" alt="Menu Design" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Branding ↗</span></div>
-        <span class="cat-badge">Branding</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="publishing" data-index="28" data-title="Teacher's Guide — Primary English">
-        <img src="assets/images/portfolio/p-29.webp" alt="Teacher's Guide" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Educational ↗</span></div>
-        <span class="cat-badge">Educational</span>
-      </div>
-
-      <div class="port-item aspect-square reveal" data-category="marketing" data-index="29" data-title="Brand Campaign — Local Business">
-        <img src="assets/images/portfolio/p-30.webp" alt="Brand Campaign" loading="lazy">
-        <div class="port-overlay"><span class="port-overlay-label">Marketing ↗</span></div>
-        <span class="cat-badge">Marketing</span>
-      </div>
-
-    </div><!-- /portfolioGrid -->
-
-    <!-- Empty state (shows when filter has no results) -->
-    <div id="emptyState" class="hidden text-center py-24">
-      <div class="text-5xl mb-4">🎨</div>
-      <p class="text-gray-400 text-base">No projects in this category yet.</p>
+      <a href="index.html#contact"
+         class="shrink-0 inline-flex items-center gap-2.5 bg-white text-brand
+                font-semibold text-sm px-7 py-3.5 rounded-xl
+                hover:shadow-lg transition">
+        Get in Touch
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
     </div>
 
     <!-- ── BACK TO HOME ── -->
-    <div class="mt-20 flex justify-center reveal">
+    <div class="mt-10 flex justify-center reveal">
       <a href="index.html"
          class="group inline-flex items-center gap-3
                 border-2 border-brand text-brand
@@ -490,7 +540,7 @@
   </main>
 
 
-  <!-- ─── FOOTER (identical to home) ─── -->
+  <!-- ─── FOOTER ─── -->
   <footer id="site-footer" class="text-white py-16">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -550,9 +600,8 @@
           <div class="space-y-3 text-purple-200 text-sm">
             <p>
               <span class="text-purple-300 font-medium">Email:</span><br>
-              <a href="mailto:hello@kalabharti.in"
-                 class="hover:text-white transition break-all">
-                hello@kalabharti.in
+              <a href="mailto:info@kalabharti.in" class="hover:text-white transition break-all">
+                info@kalabharti.in
               </a>
             </p>
             <p>
@@ -571,36 +620,6 @@
       </div>
     </div>
   </footer>
-
-
-  <!-- ─── LIGHTBOX ─── -->
-  <div id="lightbox"
-       class="fixed inset-0 bg-black/92 hidden items-center justify-center z-[999] backdrop-blur-sm">
-
-    <button id="lightboxClose"
-      class="absolute top-5 right-5 w-11 h-11 flex items-center justify-center
-             bg-black/15 backdrop-blur-md rounded-full text-white text-xl
-             hover:bg-black/30 transition z-10">✕</button>
-
-    <button id="lightboxPrev"
-      class="absolute left-5 w-11 h-11 flex items-center justify-center
-             bg-black/15 backdrop-blur-md rounded-full text-white text-2xl
-             hover:bg-black/30 transition">‹</button>
-
-    <button id="lightboxNext"
-      class="absolute right-5 w-11 h-11 flex items-center justify-center
-             bg-black/15 backdrop-blur-md rounded-full text-white text-2xl
-             hover:bg-black/30 transition">›</button>
-
-    <!-- Title bar -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2
-                bg-black/60 backdrop-blur-md px-6 py-3 rounded-full text-white text-sm font-medium"
-         id="lightboxTitle"></div>
-
-    <img id="lightboxImage" src="" alt="Portfolio image"
-         class="rounded-xl shadow-2xl"
-         style="max-height:82vh; max-width:88vw; object-fit:contain;">
-  </div>
 
 
   <!-- ─── BACK TO TOP ─── -->
@@ -636,6 +655,7 @@
   </div>
   <div id="menuBackdrop" class="fixed inset-0 bg-black/40 hidden md:hidden z-40"></div>
 
+
   <!-- ─── SCRIPTS ─── -->
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -645,8 +665,8 @@
     const closeMenu  = document.getElementById('closeMenu');
     const mobileMenu = document.getElementById('mobileMenu');
     const backdrop   = document.getElementById('menuBackdrop');
-    function openMenu()  { menuBtn.classList.add('menu-open');    mobileMenu.classList.remove('translate-x-full'); backdrop?.classList.remove('hidden'); }
-    function closePanel(){ menuBtn.classList.remove('menu-open'); mobileMenu.classList.add('translate-x-full');    backdrop?.classList.add('hidden'); }
+    function openMenu()   { menuBtn.classList.add('menu-open');    mobileMenu.classList.remove('translate-x-full'); backdrop?.classList.remove('hidden'); }
+    function closePanel() { menuBtn.classList.remove('menu-open'); mobileMenu.classList.add('translate-x-full');    backdrop?.classList.add('hidden'); }
     menuBtn.addEventListener('click', openMenu);
     closeMenu.addEventListener('click', closePanel);
     backdrop?.addEventListener('click', closePanel);
@@ -660,112 +680,19 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-    /* ── Stagger grid items ── */
-    document.querySelectorAll('#portfolioGrid .port-item').forEach((el, i) => {
-      el.style.transitionDelay = `${(i % 3) * 60}ms`;
-    });
-
-    /* ── Filter tabs ── */
-    const tabs  = document.querySelectorAll('.filter-tab');
-    const items = document.querySelectorAll('.port-item');
-    const empty = document.getElementById('emptyState');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        const filter = tab.dataset.filter;
-        let visible  = 0;
-
-        items.forEach(item => {
-          const match = filter === 'all' || item.dataset.category === filter;
-          item.classList.toggle('hidden-item', !match);
-          if (match) visible++;
-        });
-
-        empty.classList.toggle('hidden', visible > 0);
-      });
-    });
-
-    /* ── Lightbox ── */
-    const lightbox   = document.getElementById('lightbox');
-    const lbImg      = document.getElementById('lightboxImage');
-    const lbTitle    = document.getElementById('lightboxTitle');
-    const lbClose    = document.getElementById('lightboxClose');
-    const lbNext     = document.getElementById('lightboxNext');
-    const lbPrev     = document.getElementById('lightboxPrev');
-
-    // Only the currently visible items participate in lightbox nav
-    function visibleItems() {
-      return Array.from(document.querySelectorAll('.port-item:not(.hidden-item)'));
-    }
-    let cur = 0;
-
-    function openLB(index) {
-      const vis = visibleItems();
-      cur = index;
-      const item = vis[cur];
-      lbImg.src     = item.querySelector('img').src;
-      lbTitle.textContent = item.dataset.title || '';
-      lightbox.classList.remove('hidden');
-      lightbox.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLB() {
-      lightbox.classList.add('hidden');
-      lightbox.classList.remove('flex');
-      document.body.style.overflow = '';
-    }
-    function showNext() {
-      const vis = visibleItems();
-      cur = (cur + 1) % vis.length;
-      lbImg.src = vis[cur].querySelector('img').src;
-      lbTitle.textContent = vis[cur].dataset.title || '';
-    }
-    function showPrev() {
-      const vis = visibleItems();
-      cur = (cur - 1 + vis.length) % vis.length;
-      lbImg.src = vis[cur].querySelector('img').src;
-      lbTitle.textContent = vis[cur].dataset.title || '';
-    }
-
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        const vis = visibleItems();
-        const idx = vis.indexOf(item);
-        if (idx !== -1) openLB(idx);
-      });
-    });
-
-    lbClose.addEventListener('click', closeLB);
-    lbNext.addEventListener('click', showNext);
-    lbPrev.addEventListener('click', showPrev);
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape')     closeLB();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft')  showPrev();
-    });
-
-    let tx = 0;
-    lightbox.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
-    lightbox.addEventListener('touchend',   e => {
-      const dx = e.changedTouches[0].clientX - tx;
-      if (dx >  50) showPrev();
-      if (dx < -50) showNext();
+    /* ── Stagger category cards ── */
+    document.querySelectorAll('#categoryGrid .cat-card').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 55}ms`;
     });
 
     /* ── Back to top ── */
     const btt = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
-      btt.classList.toggle('visible', window.scrollY > 500);
-    }, { passive: true });
+      btt.classList.toggle('visible', window.scrollY > 400);
+    });
     btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   });
   </script>
-
 </body>
 </html>
