@@ -858,34 +858,38 @@
       <div class="mt-14 grid lg:grid-cols-2 gap-14 items-center">
 
         <!-- Form -->
-        <form class="space-y-6 reveal" onsubmit="return false;">
+        <form class="space-y-6 reveal" action="https://api.web3forms.com/submit" method="POST">
+
+          <input type="hidden" name="access_key" value="81fc3880-9e1d-4f2a-bdd0-ebb39d255d50">
 
           <div class="grid sm:grid-cols-2 gap-5">
             <div class="form-field mt-3">
               <label>First Name</label>
-              <input class="form-input" type="text" placeholder="John" />
+              <input class="form-input" name="first_name" type="text" placeholder="John" required/>
             </div>
             <div class="form-field mt-3">
               <label>Last Name</label>
-              <input class="form-input" type="text" placeholder="Smith" />
+              <input class="form-input" name="last_name" type="text" placeholder="Smith" required/>
             </div>
           </div>
 
           <div class="form-field mt-3">
             <label>Email Address</label>
-            <input class="form-input" type="email" placeholder="john@example.com" />
+            <input class="form-input" name="email" type="email" placeholder="john@example.com" required />
           </div>
 
           <div class="form-field mt-3">
             <label>Phone Number</label>
-            <input class="form-input" type="tel" placeholder="+91 00000 00000" />
+            <input class="form-input" name="phone" type="tel" placeholder="+91 00000 00000" />
           </div>
 
           <div class="form-field mt-3">
             <label>Message</label>
-            <textarea class="form-input" rows="5"
-              placeholder="Tell me about your project..."></textarea>
+            <textarea class="form-input" name="message" rows="5"
+              placeholder="Tell me about your project..." required></textarea>
           </div>
+
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
           <button type="submit"
             class="w-full bg-brand text-white font-semibold py-3.5 rounded-xl
